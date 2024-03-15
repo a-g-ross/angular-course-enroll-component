@@ -1,0 +1,40 @@
+@use 'variables' as v;
+
+html,
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+.text-title {
+  &.text-title-lg {
+    font-size: 34px;
+    line-height: 48px;
+  }
+  &.text-title-sm {
+    font-size: 30px;
+    line-height: 38px;
+  }
+}
+.text-heading {
+  &.text-heading-md {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  &.text-heading-sm {
+    font-size: 20px;
+    line-height: 26px;
+  }
+}
+.text-body {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.text-bold {
+  font-weight: v.$fw-bold !important;
+}
+.text-semibold {
+  font-weight: v.$fw-semibold !important;
+}
+.text-regular {
+  font-weight: v.$fw-normal !important;
+}

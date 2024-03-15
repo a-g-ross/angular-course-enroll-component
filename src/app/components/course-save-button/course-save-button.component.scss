@@ -1,0 +1,21 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.save-course {
+  margin-top: 16px;
+  text-align: center;
+
+  button {
+    line-height: 30px;
+    &:before {
+      content: m.svg-url-with-fill(v.$svg-bookmark-outline, v.$blue_50);
+      vertical-align: bottom;
+      margin-right: 8px;
+      display: inline-block;
+      height: 30px;
+    }
+  }
+  &.saved button::before {
+    content: m.svg-url-with-fill(v.$svg-bookmark-filled, v.$blue_50);
+  }
+}

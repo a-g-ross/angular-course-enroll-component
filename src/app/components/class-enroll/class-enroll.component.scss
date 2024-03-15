@@ -1,0 +1,70 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.class-enroll {
+  width: 536px;
+  background: v.$neutral_100;
+  border-radius: 16px;
+  padding: 24px 32px;
+}
+.class-card {
+  width: 472px;
+  box-shadow: inset 0 0 0 2px v.$neutral_80;
+  border-radius: 8px;
+  padding: 32px 24px;
+  margin-bottom: 24px;
+
+  h2 {
+    margin: 0;
+  }
+
+  &:hover {
+    box-shadow: inset 0 0 0 4px v.$primary_20;
+  }
+
+  .class-card-header {
+    color: v.$primary_30;
+    margin-bottom: 4px;
+    input {
+      margin-right: 8px;
+    }
+  }
+
+  .class-card-body {
+    width: 424px;
+
+    .class-card-body-info {
+      display: inline-block;
+      width: 316px;
+      padding-left: 32px;
+
+      p {
+        margin: 0 0 4px 0;
+      }
+
+      .class-card-pricing {
+        margin: 16px 0 0 0;
+      }
+    }
+    .instructor-container {
+      vertical-align: top;
+      display: inline-block;
+      width: 108px;
+
+      .instructor-body {
+        padding: 2px;
+        width: 84px;
+        img {
+          border-radius: 100%;
+          height: 80px;
+          width: 80px;
+          margin-bottom: 6px;
+        }
+        p {
+          text-align: center;
+          margin: 0;
+        }
+      }
+    }
+  }
+}

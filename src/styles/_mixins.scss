@@ -1,0 +1,56 @@
+@use 'sass:math';
+@use 'sass:map';
+@use 'sass:string';
+
+// Function to create an optimized svg url
+@function svg-url($svg) {
+  //
+  //  Add missing namespace
+  //
+  @if not string.index($svg, xmlns) {
+    $svg: str-replace($svg, '<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
+  }
+  $encoded: '';
+  $slice: 2000;
+  $index: 0;
+  $loops: math.ceil(math.div(string.length($svg), $slice));
+  @for $i from 1 through $loops {
+    $chunk: string.slice($svg, $index, $index + $slice - 1);
+    //
+    //   Encode
+    //
+    $chunk: str-replace($chunk, '"', "'");
+    $chunk: str-replace($chunk, '%', '%25');
+    $chunk: str-replace($chunk, '#', '%23');
+    $chunk: str-replace($chunk, '{', '%7B');
+    $chunk: str-replace($chunk, '}', '%7D');
+    $chunk: str-replace($chunk, '<', '%3C');
+    $chunk: str-replace($chunk, '>', '%3E');
+
+    $encoded: #{$encoded}#{$chunk};
+    $index: $index + $slice;
+  }
+  @return url('data:image/svg+xml,#{$encoded}');
+}
+
+// Function to fill svg with colour (svg must have fill set to black: #000)
+@function svg-url-with-fill($svg, $color) {
+  $replaced-svg: str-replace($svg, '#000', $color);
+  $svg-url: svg-url($replaced-svg);
+  @return $svg-url;
+}
+
+// Helper function to replace characters in a string
+@function str-replace($string, $search, $replace: '') {
+  $index: string.index($string, $search);
+  @return if(
+    $index,
+    string.slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        string.slice($string, $index + string.length($search)),
+        $search,
+        $replace
+      ),
+    $string
+  );
+}

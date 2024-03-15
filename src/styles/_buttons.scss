@@ -1,0 +1,43 @@
+@use 'variables' as v;
+
+.btn {
+  display: inline-block;
+  text-align: center;
+  border: 0;
+
+  &.btn-full {
+    width: 100%;
+  }
+
+  &.btn-primary {
+    text-decoration: none;
+    background: v.$primary_60;
+    color: v.$neutral_100;
+    padding: 8px 16px;
+    border-radius: 7px;
+
+    &:hover,
+    &:focus {
+      background: v.$primary_40;
+    }
+    &:focus {
+      box-shadow: inset 0 0 0 2px v.$primary_20;
+    }
+  }
+  &.btn-link {
+    // change to box-shadow?
+    border: 2px solid transparent;
+    background: transparent;
+    color: v.$blue_50;
+    padding: 8px;
+    border-radius: 7px;
+
+    &:hover,
+    &:focus span {
+      text-decoration: underline;
+    }
+    &:focus {
+      border: 2px solid v.$blue_50;
+    }
+  }
+}

@@ -1,0 +1,54 @@
+<div class="class-enroll">
+  <h1 class="text-title text-title-lg text-semibold">Course Dates</h1>
+
+  <section class="class-card" *ngFor="let class of classes">
+    <div class="class-card-header">
+      <h2 class="text-heading text-heading-sm">
+        <input
+          type="radio"
+          name="enroll_choice"
+          [value]="class.id"
+          (click)="setSelectedClass(class.id)"
+        />
+        Virtual Course
+      </h2>
+    </div>
+    <div class="class-card-body">
+      <div class="class-card-body-info">
+        <p class="text-title text-title-sm text-bold">
+          {{ getClassDayTitle(class.dates) }}
+        </p>
+        <p class="text-title text-title-sm">
+          {{ getClassDateTime(class.dates) }}
+        </p>
+        <p class="text-body text-body-md">
+          {{ getTimezoneCity(class.timeZone) }} City Time
+        </p>
+        <p class="text-body text-body-md class-card-pricing">
+          <b>${{ class.pricingAmount }} {{ class.pricingCurrency }}</b>
+          Until {{ getClassPriceUntil(class.priceValidUntil) }}
+        </p>
+      </div>
+      <aside class="instructor-container">
+        <div class="instructor-body">
+          <img [src]="class.instructorImage" />
+          <p class="text-body text-body-md">
+            Instructor: {{ class.instructorName }}
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <div class="class-enroll-button">
+    <a
+      [attr.href]="'/course/' + selectedClassId + '/enroll'"
+      class="btn btn-primary btn-full"
+    >
+      <span class="text-heading text-heading-md text-bold"
+        >Enroll in Course</span
+      >
+    </a>
+  </div>
+  <app-course-save-button [courseId]="courseId"></app-course-save-button>
+</div>
